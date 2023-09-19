@@ -15,7 +15,7 @@ function ampel (zustand: boolean) {
         basic.showLeds(`
             . . . . .
             . . # . .
-            . . . . .
+            . # # # .
             . . # . .
             . . . . .
             `)
@@ -51,20 +51,36 @@ function get_abstand () {
     // serial.writeValue("x", abst)
     return abst
 }
+input.onButtonPressed(Button.A, function () {
+    ampel_aus()
+    power.fullPowerOn(FullPowerSource.B)
+    power.lowPowerRequest(LowPowerMode.Wait)
+})
+input.onButtonPressed(Button.B, function () {
+    strip.showColor(neopixel.colors(NeoPixelColors.Purple))
+})
+function ampel_aus () {
+    strip.showColor(neopixel.colors(NeoPixelColors.Black))
+}
 let amp_zustand = false
 let abstand = 0
 let abst = 0
 let strip: neopixel.Strip = null
 let zzz = 0
 basic.showIcon(IconNames.Yes)
-let fang_abstand = 20
+let fang_abstand = 10
 zzz = 0
-strip = neopixel.create(DigitalPin.P0, 3, NeoPixelMode.RGB)
-strip.showColor(neopixel.colors(NeoPixelColors.Black))
+strip = neopixel.create(DigitalPin.P8, 3, NeoPixelMode.RGB)
+ampel_aus()
 basic.forever(function () {
     basic.pause(2000)
     abstand = get_abstand()
-    if (abstand < fang_abstand) {
+    if (abstand < fang_abstand && abstand > 0) {
+        led.plotBarGraph(
+        abstand,
+        25
+        )
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Prelude), music.PlaybackMode.InBackground)
         amp_zustand = true
     } else {
         amp_zustand = false

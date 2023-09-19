@@ -6,7 +6,8 @@
         "radio": "*",
         "microphone": "*",
         "neopixel": "github:microsoft/pxt-neopixel#v0.7.5",
-        "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.5"
+        "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.5",
+        "power": "github:microbit-foundation/pxt-microbit-v2-power#v0.2.3"
     },
     "files": [
         "main.blocks",
@@ -23,5 +24,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
