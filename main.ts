@@ -11,14 +11,6 @@ function ampel (zustand: boolean) {
             . . . . .
             `)
     } else {
-        basic.showNumber(zzz)
-        basic.showLeds(`
-            . . . . .
-            . . # . .
-            . # # # .
-            . . # . .
-            . . . . .
-            `)
         strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Yellow))
         strip.show()
         basic.pause(2000)
@@ -66,10 +58,9 @@ let amp_zustand = false
 let abstand = 0
 let abst = 0
 let strip: neopixel.Strip = null
-let zzz = 0
 basic.showIcon(IconNames.Yes)
-let fang_abstand = 10
-zzz = 0
+let fang_abstand = 25
+let zzz = 0
 strip = neopixel.create(DigitalPin.P8, 3, NeoPixelMode.RGB)
 ampel_aus()
 basic.forever(function () {
